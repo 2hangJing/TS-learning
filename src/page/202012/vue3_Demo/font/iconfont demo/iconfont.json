@@ -1,0 +1,65 @@
+{
+  "id": "1497329",
+  "name": "webpack4",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11644468",
+      "name": "公寓报修",
+      "font_class": "gongyubaoxiu",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "11644473",
+      "name": "节假日返校",
+      "font_class": "jiejiarifanxiao",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "11644474",
+      "name": "情况反映",
+      "font_class": "qingkuangfanying",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "11644475",
+      "name": "课程成绩",
+      "font_class": "kechengchengji",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "11644484",
+      "name": "我的假期留校",
+      "font_class": "wodejiaqiliuxiao",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "11644485",
+      "name": "请假",
+      "font_class": "qingjia",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "11644486",
+      "name": "申请荣誉称号",
+      "font_class": "shenqingrongyuchenghao",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "11644488",
+      "name": "我的贫苦认定",
+      "font_class": "wodepinkurending",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    }
+  ]
+}

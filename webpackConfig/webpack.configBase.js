@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2019-11-27 09:39:50
  * @LastEditors: monai
- * @LastEditTime: 2021-03-01 15:59:13
+ * @LastEditTime: 2021-04-08 18:46:58
  */
 const path                  = require('path');
 const webpack               = require('webpack');
@@ -54,7 +54,7 @@ module.exports= {
             },{
                 test: /.ts$/,
                 use: [{
-                    loader: 'ts-loader',
+                    loader: ['babel-loader', 'ts-loader'],
                     options: {
                         appendTsSuffixTo: [/.vue$/],
                     }

@@ -108,6 +108,12 @@
             // let sevenClass = new Seven();
             //  派生类、子类 可以。
             let sevenExtendsClass = new SevenExtends();
+
+
+            let p = new Promise(res=>{
+                console.log(111111);
+                
+            });
         }
     }
 </script>

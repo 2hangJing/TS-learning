@@ -29,7 +29,7 @@
     "include": [
         "src/page/**/*.ts",
     ],
-
+    // 测试配置
     // "compilerOptions": {
 
     //     /* 基本选项 */

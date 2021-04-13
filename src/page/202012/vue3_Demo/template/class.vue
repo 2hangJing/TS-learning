@@ -6,12 +6,15 @@
     <h2>{{ aaa }}</h2>
 </template>
 <script lang="ts">
-    export default {
+    import { defineComponent } from 'vue';
+    export default defineComponent({
         data(){
-            console.log(11111);
             return{
                 aaa: 50
             }
+        },
+        mounted(){
+            // this.aaa;
         },
         setup(){
             console.log('```````````` class `````````````````');
@@ -122,7 +125,7 @@
                 console.log(111111);
             });
         }
-    }
+    })
 </script>
 <style lang='scss'>
 

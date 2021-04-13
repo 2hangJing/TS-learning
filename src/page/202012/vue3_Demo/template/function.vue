@@ -2,15 +2,19 @@
  * @Author: monai
  * @Date: 2021-03-04 17:31:59
  * @LastEditors: monai
- * @LastEditTime: 2021-03-05 16:03:52
+ * @LastEditTime: 2021-04-13 18:30:09
 -->
 <template>
     <div>
         <h3> this is function </h3>
+        <h2>{{ num }}</h2>
+        <button @click="buttonClickFunc">加法</button>
     </div>
 </template>
 <script lang="ts">
-    export default {
+    import { defineComponent } from 'vue';
+
+    export default defineComponent({
         setup(){
             console.log('```````````` function `````````````````');
             let func1: (age: number, name: string)=>object = function(age, name){
@@ -79,8 +83,26 @@
             console.log('重载：', func6('string'));
 
             
+        },
+        data(){
+            return{
+                num: 0
+            }
+        },
+        methods:{
+            addFunc(type: string){
+                if(type === 'add'){
+                    this.num += 10;
+                }else{
+                    this.num += 20;
+                }
+            },
+            buttonClickFunc():void{
+                let type: string = 'e';
+                this.addFunc(type);
+            }
         }
-    }
+    })
 </script>
 <style lang='scss'>
 

@@ -1,13 +1,35 @@
 <template>
     <div>
         <h1>ts 测试</h1>
+        <h2>{{ textTransform }}</h2>
         <button @click="routerFunc('class')">跳转 class</button>
         <button @click="routerFunc('function')">跳转 function</button>
+        <button @click="routerFunc('generics')">跳转 generics</button>
         <router-view></router-view>
     </div>
 </template>
 <script lang='ts'>
-    export default {
+    import { defineComponent } from 'vue';
+    interface dataUserInfo {
+        name: string;
+        age: number
+        sex?: string
+    }
+    export default defineComponent({
+        data(){
+            return {
+                userInfo:{
+                    name: 'zhang san',
+                    age: 0,
+                    sex: 'man'
+                } as dataUserInfo
+            }
+        },
+        computed:{
+            textTransform(): string{
+                return 'name: ' + this.userInfo.name;
+            }
+        },
         created(){
             let boo: boolean = false;
             let num: number = 1;
@@ -42,10 +64,14 @@
             // }
             // neverFunc();
 
-            //  类型断言
-            let typeAssertionStr = 'typeAssertionStr';
+            //  类型断言 as 写法
+            let typeAssertionStr1 = 'typeAssertionStr1';
             //  确定为 string
-            console.log( 'typeAssertionStr length', (typeAssertionStr as string).length );
+            console.log( 'typeAssertionStr1 length', (typeAssertionStr1 as string).length );
+            //  类型断言 <> 写法
+            let typeAssertionStr2 = { name: 'typeAssertionStr2' };
+            //  确定为 string
+            console.log( 'typeAssertionStr2 length', (<string>typeAssertionStr2.name).length );
             
             //  接口
             enum EenumLearning { 'a', 'b', 'c' = 6 };
@@ -146,7 +172,7 @@
                 this['$router'].push(routerName);
             }
         }
-    }
+    })
 </script>
 <style lang='scss'>
     @import './scss/app.scss';

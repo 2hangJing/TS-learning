@@ -8,6 +8,9 @@ const routerList = [
     },{
         path: '/function',
         component: () => import('../template/function.vue')
+    },{
+        path: '/generics',
+        component: () => import('../template/generics.vue')
     },
 ]
 

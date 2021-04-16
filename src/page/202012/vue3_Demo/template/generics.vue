@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-04-15 09:58:38
  * @LastEditors: monai
- * @LastEditTime: 2021-04-15 18:53:25
+ * @LastEditTime: 2021-04-16 18:32:43
 -->
 <template>
     <div class="">
@@ -44,17 +44,27 @@
             console.log('genericInterfaceFunc: ', genericInterfaceVar(20));
             console.log('genericInterfaceVar.index：', genericInterfaceVar.index);
 
-            //  generic class
-            class GenericClassNumber<T>{
-                index: number;
-                add: (x:T, y:T)=>T;
-                constructor(){
-                    this.add = (x, y)=>{ return x+y};
-                    this.index = 10;
-                }
+            //  generic class 
+            //  class 中需要使用 非空断言运算符 断言未在 constructor 中初始化得属性
+            class GenericClassNumber<T> {
+                index!: T;
+                add!: (x:T, y:T)=>T;
             }
             let myGenericClassNumber = new GenericClassNumber<number>();
-            console.log( myGenericClassNumber.index );
+            myGenericClassNumber.index = 10;
+            myGenericClassNumber.add = (x, y)=> x+y;
+            console.log('myGenericClassNumber: ', myGenericClassNumber.index);
+
+            //  generic Constraints 泛型约束
+            //  keyof 操作符 https://juejin.cn/post/6865860467307315207#heading-6
+            function genericConstraintsFunc<T, K extends keyof T>(obj: T, key: K): void{
+                console.log('genericConstraintsFunc: ', obj[key]);
+            }
+            genericConstraintsFunc({a: 1, b: 2}, 'a');
+            // genericConstraintsFunc({a: 1, b: 2}, 'c'); // 报错
+            
+
+            
             
             console.log(`*********** generics end ***********`);
         }

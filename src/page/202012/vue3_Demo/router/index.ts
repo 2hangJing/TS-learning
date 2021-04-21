@@ -11,6 +11,12 @@ const routerList = [
     },{
         path: '/generics',
         component: () => import('../template/generics.vue')
+    },{
+        path: '/enum',
+        component: () => import('../template/enum/enum.vue')
+    },{
+        path: '/typeCompatibility',
+        component: () => import('../template/typeCompatibility/typeCompatibility.vue')
     },
 ]
 

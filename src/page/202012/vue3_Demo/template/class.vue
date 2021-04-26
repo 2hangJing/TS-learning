@@ -120,10 +120,24 @@
             //  派生类、子类 可以。
             let sevenExtendsClass = new SevenExtends();
 
-
-            let p = new Promise(res=>{
-                console.log(111111);
-            });
+            // implements 与 extends 区别
+            // implements
+            // 实现，一个新的类，从父类或者接口实现所有的属性和方法，但是不是子类
+            // extends
+            // 继承，一个新的接口或者类，从父类或者接口继承所有的属性和方法，不可以重写属性，但可以重写方法
+            interface implementsInterface {
+                name: string;
+                age: string;
+            };
+            class implementsClass implements implementsInterface{
+                name: string;
+                age: string;
+                constructor(){
+                    this.name = '10';
+                    this.age = '20';
+                }
+            }
+            
         }
     })
 </script>

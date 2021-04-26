@@ -7,6 +7,7 @@
         <button @click="routerFunc('generics')">跳转 generics</button>
         <button @click="routerFunc('enum')">跳转 enum</button>
         <button @click="routerFunc('typeCompatibility')">跳转 typeCompatibility</button>
+        <button @click="routerFunc('advancedType')">跳转 advancedType</button>
         <router-view></router-view>
     </div>
 </template>

@@ -17,6 +17,9 @@ const routerList = [
     },{
         path: '/typeCompatibility',
         component: () => import('../template/typeCompatibility/typeCompatibility.vue')
+    },{
+        path: '/advancedType',
+        component: () => import('../template/advancedType/advancedType.vue')
     },
 ]
 

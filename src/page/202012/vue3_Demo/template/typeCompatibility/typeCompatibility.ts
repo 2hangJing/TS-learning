@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-04-21 15:45:12
  * @LastEditors: monai
- * @LastEditTime: 2021-04-24 14:58:51
+ * @LastEditTime: 2021-05-21 10:22:54
  */
 import { defineComponent } from 'vue';
 
@@ -35,8 +35,8 @@ export default defineComponent({
         interface C{ name: string; age: number };
         let a: A = { name: 'a' };
         let c: C = { name: 'c', age: 10 };
-        //  满足协变，按照结构性类型来说：a是父类，b是子类，可以这么理解：b extend a { age: 10 }，相当于b继承a。
-        //  所以从 a（父）->b(子) 满足协变，符合类型兼容。
+        //  满足协变，按照结构性类型来说：A是父类，C是子类，可以这么理解：C extend A { age: number = 10; }，相当于C继承A。
+        //  所以从 a（父）->c(子) 满足协变，符合类型兼容。
         // a = c;
         //  反之不成立
         // c = a;

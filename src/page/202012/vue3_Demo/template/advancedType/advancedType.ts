@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-04-25 09:51:42
  * @LastEditors: monai
- * @LastEditTime: 2021-04-25 10:09:11
+ * @LastEditTime: 2021-05-18 16:31:31
  */
 import { defineComponent } from 'vue';
 
@@ -34,6 +34,9 @@ export default defineComponent({
             name: 'unionVar'
         };
         console.log( unionVar.name );
+        
+        // https://juejin.cn/post/6865860467307315207#heading-11
+        // https://juejin.cn/post/6844904066489778183#heading-1
         
 
         console.log('````````````````` advancedType end `````````````````');

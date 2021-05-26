@@ -20,6 +20,12 @@ const routerList = [
     },{
         path: '/advancedType',
         component: () => import('../template/advancedType/advancedType.vue')
+    },{
+        path: '/Keyword',
+        component: () => import('../template/Keyword/Keyword.vue')
+    },{
+        path: '/BuiltInType',
+        component: () => import('../template/BuiltInType/BuiltInType.vue')
     },
 ]
 

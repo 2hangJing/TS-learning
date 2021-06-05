@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-04-25 09:51:42
  * @LastEditors: monai
- * @LastEditTime: 2021-05-18 16:31:31
+ * @LastEditTime: 2021-06-05 17:06:07
  */
 import { defineComponent } from 'vue';
 
@@ -37,7 +37,11 @@ export default defineComponent({
         
         // https://juejin.cn/post/6865860467307315207#heading-11
         // https://juejin.cn/post/6844904066489778183#heading-1
-        
+
+        // 经典↓↓
+        // https://cloud.tencent.com/developer/article/1612663
+        // https://juejin.cn/post/6847902223402270728#heading-6
+
 
         console.log('````````````````` advancedType end `````````````````');
     }

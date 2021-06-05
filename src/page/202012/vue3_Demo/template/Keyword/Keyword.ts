@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 09:54:42
  * @LastEditors: monai
- * @LastEditTime: 2021-05-26 14:50:01
+ * @LastEditTime: 2021-06-05 16:33:24
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -13,7 +13,7 @@ export default defineComponent({
     mounted() {
         console.log('````````````````` Keyword start `````````````````');
         console.log( '\n', '******** extends ********' );
-        console.log( 'extends 关键字，A extends B=>原理：判断A类型实例是否能赋值给B类型实例。满足类型兼容，也就是协变' );
+        console.log( 'extends 关键字，A extends B=>原理：判断A是否为B的子类（A、B 可以是类也可以是联合类型）。如果是类则满足类型兼容，也就是协变。' );
         class extendsClass1 {
             public name: string = 'class1';
         }

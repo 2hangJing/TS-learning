@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 14:55:40
  * @LastEditors: monai
- * @LastEditTime: 2021-05-26 18:37:01
+ * @LastEditTime: 2021-06-05 18:16:39
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -57,6 +57,14 @@ export default defineComponent({
         // };
         type typeRecord1 = { name: string; age: number };
         type typeRecord2 = Record<keyof typeRecord1, boolean>;
+
+        console.log( '\n', '******** Exclude ********' );
+        console.log( 'Exclude<K, T> 从K中剔除T。' );
+        // node_modules/typescript/lib/lib.es5.d.ts
+        // type Exclude<T, U> = T extends U ? never : T;
+        type typeExclude = Exclude<'a' | 1, number>;
+
+        
 
 
         console.log('````````````````` Keyword end `````````````````');

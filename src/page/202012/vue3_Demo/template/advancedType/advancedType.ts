@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-04-25 09:51:42
  * @LastEditors: monai
- * @LastEditTime: 2021-06-05 17:06:07
+ * @LastEditTime: 2021-06-10 18:49:13
  */
 import { defineComponent } from 'vue';
 
@@ -10,6 +10,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     mounted() {
         console.log('````````````````` advancedType start `````````````````');
+      
         // 1. 交叉类型 intersection types
         interface intersectionTypes1 {
             name: string

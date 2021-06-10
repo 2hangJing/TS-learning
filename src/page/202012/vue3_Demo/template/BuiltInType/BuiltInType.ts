@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 14:55:40
  * @LastEditors: monai
- * @LastEditTime: 2021-06-05 18:16:39
+ * @LastEditTime: 2021-06-10 18:48:25
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -63,9 +63,17 @@ export default defineComponent({
         // node_modules/typescript/lib/lib.es5.d.ts
         // type Exclude<T, U> = T extends U ? never : T;
         type typeExclude = Exclude<'a' | 1, number>;
+        type zjex<t, u> = t extends u? never: t;
+        type t = 'a' | 1;
+        type u = number;
+        type r = zjex<t, u>;
+        type re = t extends u? never: t;
 
-        
-
+        type tt = {a: string};
+        // let lettt:tt = {a: 'a', f: 1};
+        let letttObj = {a: 'a', b: 1};
+        let lettt:tt = letttObj;
+        console.log( lettt.a );
 
         console.log('````````````````` Keyword end `````````````````');
     }

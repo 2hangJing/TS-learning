@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 09:54:42
  * @LastEditors: monai
- * @LastEditTime: 2021-06-05 16:33:24
+ * @LastEditTime: 2021-06-10 18:49:31
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -14,6 +14,8 @@ export default defineComponent({
         console.log('````````````````` Keyword start `````````````````');
         console.log( '\n', '******** extends ********' );
         console.log( 'extends 关键字，A extends B=>原理：判断A是否为B的子类（A、B 可以是类也可以是联合类型）。如果是类则满足类型兼容，也就是协变。' );
+        //  https://stackoverflow.com/questions/55382306/typescript-distributive-conditional-types
+        //   https://zhuanlan.zhihu.com/p/96046788
         class extendsClass1 {
             public name: string = 'class1';
         }

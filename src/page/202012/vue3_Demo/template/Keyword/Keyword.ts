@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 09:54:42
  * @LastEditors: monai
- * @LastEditTime: 2021-06-10 18:49:31
+ * @LastEditTime: 2021-06-16 16:49:53
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -13,9 +13,17 @@ export default defineComponent({
     mounted() {
         console.log('````````````````` Keyword start `````````````````');
         console.log( '\n', '******** extends ********' );
+        console.log( 'T extends U ? X : Y' );
+        console.log( `
+            T: checkedType 被检测类型
+            U: extendsType 判断条件
+            X: trueType 检测条件为true的结果类型
+            Y: falseType 检测条件为false的结果类型`
+        );
         console.log( 'extends 关键字，A extends B=>原理：判断A是否为B的子类（A、B 可以是类也可以是联合类型）。如果是类则满足类型兼容，也就是协变。' );
-        //  https://stackoverflow.com/questions/55382306/typescript-distributive-conditional-types
-        //   https://zhuanlan.zhihu.com/p/96046788
+        //  官网解释：https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types
+        //  经典回答：https://stackoverflow.com/questions/55382306/typescript-distributive-conditional-types
+        //  知乎解释：https://zhuanlan.zhihu.com/p/96046788
         class extendsClass1 {
             public name: string = 'class1';
         }
@@ -26,6 +34,24 @@ export default defineComponent({
         type extendsClassType<T> = T extends extendsClass1 ? T: extendsClass1;
         type extendsClass =  extendsClassType<extendsClass2>;
         console.log( '根据类型推断，extendsClass 现在是 extendsClass2' );
+
+        console.log( '\n', '******** extends: Distributive Conditional Types（分布式条件类型） ********' );
+        console.log( `
+            当 checkedType 同时满足：
+            1. 泛型（generic type），且入参为 union type。
+            2. 为 naked type（裸类型，意思是这个type没有被包裹在其他的复合结构里，如 array,、元组、record、function等）
+        ` );
+        //  符合 Distributive Conditional Types 类型 
+        type distributive_success<T> = T extends number[] ? T: boolean[];
+        type distributive_test1 = distributive_success<[1]|['2']>;
+
+        //  不符合 Distributive Conditional Types 类型，因为 checkedType（T）被 [] 包裹（元组）起来了，不再是裸类型。
+        type distributive_error1<T> = [T] extends number[] ? T: boolean[];
+        type distributive_test2 = distributive_error1<1|'2'>;
+        //  不符合 Distributive Conditional Types 类型，因为 checkedType（T）被Array包裹起来，不再是裸类型。
+        type distributive_error2<T> = Array<T> extends number[] ? T: boolean[];
+        type distributive_test3 = distributive_error2<1|'2'>;
+        
 
         console.log( '\n', '******** typeof ********' );
         console.log( 'typeof TS中在基础功能上增加：获取变量的声明类型。' );
@@ -65,7 +91,8 @@ export default defineComponent({
             obj: {readonly [key in keyof inInterface]: key}
         }
 
-        console.log( '\n', '******** infer 暂定 ********' );
+        console.log( '\n', '******** infer ********' );
+        
  
 
         console.log('````````````````` Keyword end `````````````````');

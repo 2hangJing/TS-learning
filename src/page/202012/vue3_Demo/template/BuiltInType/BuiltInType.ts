@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 14:55:40
  * @LastEditors: monai
- * @LastEditTime: 2021-06-10 18:48:25
+ * @LastEditTime: 2021-06-16 16:40:07
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -60,20 +60,25 @@ export default defineComponent({
 
         console.log( '\n', '******** Exclude ********' );
         console.log( 'Exclude<K, T> 从K中剔除T。' );
+        console.log( '此处设计到 extends 相关知识' );
         // node_modules/typescript/lib/lib.es5.d.ts
         // type Exclude<T, U> = T extends U ? never : T;
         type typeExclude = Exclude<'a' | 1, number>;
-        type zjex<t, u> = t extends u? never: t;
-        type t = 'a' | 1;
-        type u = number;
-        type r = zjex<t, u>;
-        type re = t extends u? never: t;
+        
+        console.log( '\n', '******** Extract ********' );
+        console.log( 'Extract<K, T> 从K中提炼出T。' );
+        console.log( '此处设计到 extends 相关知识' );
+        // node_modules/typescript/lib/lib.es5.d.ts
+        // type Extract<K, T> = K extends T? K: T;
+        type typeExtract = Extract<'a'|'b'|'c', 'c'>;
 
-        type tt = {a: string};
-        // let lettt:tt = {a: 'a', f: 1};
-        let letttObj = {a: 'a', b: 1};
-        let lettt:tt = letttObj;
-        console.log( lettt.a );
+        // console.log( '\n', '******** ReturnType ********' );
+        // console.log( 'Extract<K, T> 从K中提炼出T。' );
+        // console.log( '此处设计到 extends 相关知识' );
+        // // node_modules/typescript/lib/lib.es5.d.ts
+        // // type Extract<K, T> = K extends T? K: T;
+        // type typeExtract = Extract<'a'|'b'|'c', 'c'>;
+
 
         console.log('````````````````` Keyword end `````````````````');
     }

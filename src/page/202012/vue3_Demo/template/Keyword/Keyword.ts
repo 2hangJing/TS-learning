@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 09:54:42
  * @LastEditors: monai
- * @LastEditTime: 2021-06-16 16:49:53
+ * @LastEditTime: 2021-06-17 18:56:20
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -92,7 +92,13 @@ export default defineComponent({
         }
 
         console.log( '\n', '******** infer ********' );
-        
+        console.log( 'infer 在类型判断（extends 表达式中）声明一个类型变量。' );
+        console.log( 'infer 多个候选类型时逆变位置为交叉类型，协变位置为联合类型' );
+        type typeInfer<T> = {a: T} extends { a: infer R }? { b: R }: {b: 'no match'};
+        type inferEx = typeInfer<number>;
+        //  逆变 Contravariance 时联合类型
+        // type inferContravariance = 
+
  
 
         console.log('````````````````` Keyword end `````````````````');

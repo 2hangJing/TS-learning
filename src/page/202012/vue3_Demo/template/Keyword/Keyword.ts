@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-05-26 09:54:42
  * @LastEditors: monai
- * @LastEditTime: 2021-06-17 18:56:20
+ * @LastEditTime: 2021-06-18 18:34:12
  */
 import { defineComponent, readonly } from 'vue';
 
@@ -96,8 +96,19 @@ export default defineComponent({
         console.log( 'infer 多个候选类型时逆变位置为交叉类型，协变位置为联合类型' );
         type typeInfer<T> = {a: T} extends { a: infer R }? { b: R }: {b: 'no match'};
         type inferEx = typeInfer<number>;
-        //  逆变 Contravariance 时联合类型
-        // type inferContravariance = 
+        //  逆变 Contravariance 时交叉类型
+        //  原理：逆变位置需要满足 T 是父类，
+        type inferContravariance<T> = ((arg: T)=>void) extends (arg: {a: infer R, b: infer R})=>void ? R: 'no match';
+        type inferContravariance_1 = inferContravariance<{a: {num: number}, b: {class: string}}>;
+        
+        //  协变 covariant 时联合类型  
+        //  原理：协变位置需要满足 T 是子类（ 也就是 {a: 'a1', b: 'b1'} 是 {a: infer R, b: infer R} 的子类），所以此条件的 R 最小范围值就是 a1 | b1。
+        type inferCovariant<T> = T extends {a: infer R, b: infer R}? R: 'no match';
+        type inferCovariant_1 = inferCovariant<{a: 'a1', b: 'b1'}>
+
+        type test1 = {a: 'a1'|'b1'};
+        type test2 = {a: 'a1', b: 'b1'};
+        type test3 = test2 extends test1 ? true: false;
 
  
 

@@ -35,6 +35,7 @@ module.exports = Object.assign({
     autoOpen: false,
     //  需要打包、本地开发启动的文件路径正则, 空数组代表全部
     includeProject: [
-        /202012\/vue3_Demo/
+        /202012\/vue3_Demo/,
+        /vue3_Responsive/
     ]
 }, ENV_CONFIG);

@@ -2,6 +2,7 @@
     <div>
         <h1>ts 测试</h1>
         <h2>{{ textTransform }}</h2>
+        <button @click="routerFunc('Vue3')">跳转 Vue3</button>
         <button @click="routerFunc('class')">跳转 class</button>
         <button @click="routerFunc('function')">跳转 function</button>
         <button @click="routerFunc('generics')">跳转 generics</button>
@@ -170,10 +171,11 @@
             }
 
             console.log('objInterface', ccFuncInterface()('混合接口'));
+            console.log('```````````````````````````````` app end ````````````````````````````````');
         },
         methods:{
             routerFunc(routerName: string): void{
-                
+            
                 this['$router'].push(routerName);
             }
         }

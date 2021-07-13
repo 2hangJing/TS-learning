@@ -12,6 +12,9 @@ const routerList = [
         path: '/generics',
         component: () => import('../template/generics.vue')
     },{
+        path: '/Vue3',
+        component: () => import('../template/Vue3.vue')
+    },{
         path: '/enum',
         component: () => import('../template/enum/enum.vue')
     },{
@@ -26,7 +29,7 @@ const routerList = [
     },{
         path: '/BuiltInType',
         component: () => import('../template/BuiltInType/BuiltInType.vue')
-    },
+    }
 ]
 
 const router = createRouter({

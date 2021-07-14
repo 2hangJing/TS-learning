@@ -2,11 +2,15 @@
  * @Author: monai
  * @Date: 2021-07-13 13:58:35
  * @LastEditors: monai
- * @LastEditTime: 2021-07-13 18:44:04
+ * @LastEditTime: 2021-07-14 18:27:27
  */
-let activeEffect: Function | null;
+
+
+import { TYPE_effectOptions, TYPE_effect } from './type';
+
+let activeEffect: TYPE_effect | undefined;
 const targetMap = new WeakMap();
-const effectStack: Function[] = [];
+const effectStack: TYPE_effect[] = [];
 
 const reactive = (obj)=>{
 
@@ -31,18 +35,18 @@ const reactive = (obj)=>{
 const track = (target, propKey)=>{
 
     //  不存在当前激活的 activeEffect，代表当前触发 getter的不是 effect 函数
-    if(activeEffect === null)return;
+    if(activeEffect === undefined)return;
     //  获取当前 target 对应的所有 key 对应的 effect Map 
-    let keyEffectMap: Map<string, Function[]> | undefined = targetMap.get(target);
+    let keyEffectMap: Map<string, TYPE_effect[]> | undefined = targetMap.get(target);
     //  所有 target map中不存在当前的 target，
     if(!keyEffectMap){
 
-        keyEffectMap = new Map<string, Function[]>();
+        keyEffectMap = new Map<string, TYPE_effect[]>();
         
         targetMap.set(target, keyEffectMap);
     }
     //  当前 propKey 对应的 effect 数组
-    let effectArr: Function[] | undefined = keyEffectMap.get(propKey);
+    let effectArr: TYPE_effect[] | undefined = keyEffectMap.get(propKey);
 
     if(effectArr === undefined){
         effectArr = [];
@@ -58,24 +62,32 @@ const track = (target, propKey)=>{
 //  触发
 const trigger = (target, propKey)=>{
 
-    let keyEffectMap: Map<string, Function[]> | undefined = targetMap.get(target);
+    let keyEffectMap: Map<string, TYPE_effect[]> | undefined = targetMap.get(target);
 
     if(keyEffectMap === undefined)return;
 
-    let effectArr: Function[] | undefined = keyEffectMap.get(propKey);
+    let effectArr: TYPE_effect[] | undefined = keyEffectMap.get(propKey);
 
     if(effectArr === undefined) return;
     //  收集了当前 key 的 effect，全部触发一遍
-    effectArr.forEach(effect=> effect());
+    effectArr.forEach(effect=> {
+        if(effect.options.scheduler){
+            effect.options.scheduler(effect);
+        }else{
+            effect();
+        }
+    });
 }
 // effect 
-const effect = (func: Function)=>{
-    const effectFunc = createEffect(func);
+const effect = (func: Function, options: TYPE_effectOptions)=>{
+    const effectFunc = createEffect(func, options);
+    
+    !options.lazy && effectFunc();
 
-    effectFunc();
+    return effectFunc;
 }
 // createEffect
-const createEffect = (fn)=>{
+const createEffect = (fn, options)=>{
     const effectFunc = ()=>{
         //  当前的 effectFunc 在执行栈 effectStack 中，不再重复执行
         if(effectStack.includes(effectFunc))return;
@@ -87,19 +99,38 @@ const createEffect = (fn)=>{
         fn();
         //  执行完毕后出栈
         effectStack.pop();
-
+        //  A fn() -> A setter 执行时可能触发另外一个 B setter -> trigger -> effectArr.forEach(effect=> effect()) -> activeEffect = B effect
+        //  当前 effect 执行完毕后需要将 activeEffect 赋值为下一个 effect
+        activeEffect = effectStack[effectStack.length - 1];
     }
+    
+    effectFunc.options = options;
+
     return effectFunc;
 }
 
 
-let reactObj = reactive({id: 10});
-
-effect(()=>{
-
-
+//  watchEffect
+const watchEffect = (fun: (onInvidata?: ()=>void)=>void)=>{
     
-    console.log( 'reactObj', reactObj );
-});
+}
 
-// setInterval(()=> reactObj.id+=1, 1000);
+
+// let obj = reactive({id: 10});
+// let isRuning = false;
+// effect(()=>{
+//     console.log( 'obj----', obj.id );
+// },{
+//     lazy: false,
+//     scheduler: (effectItem)=>{
+//         if(isRuning)return;
+//         isRuning = true;
+//         Promise.resolve().then(res=>{
+//             effectItem();
+//         });
+//     }
+// })
+
+// obj.id ++;
+// obj.id ++;
+// obj.id ++;

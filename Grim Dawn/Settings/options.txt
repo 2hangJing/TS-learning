@@ -1,6 +1,6 @@
 quickBuy                  = true
 lockItemPickup            = true
-mapZoom                   = 88
+mapZoom                   = 40
 importedCharacters        = false
 lockMapRotation           = false
 cameraShake               = true
@@ -45,7 +45,7 @@ reflectionQuality         = medium
 detailLevel               = very high
 resolution                = 1680 1050
 refreshRate               = 120000 1000
-windowPosition            = 411 222
+windowPosition            = 437 181
 antiAliasing              = 2
 anisotropicFiltering      = 1
 screenMode                = 1

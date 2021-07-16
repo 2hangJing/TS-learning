@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-07-07 16:34:54
  * @LastEditors: monai
- * @LastEditTime: 2021-07-13 09:56:42
+ * @LastEditTime: 2021-07-15 17:23:00
 -->
 <template>
     <div>
@@ -19,14 +19,30 @@
             let refUserInfo = reactive({id: 20, name: 'name'});
             console.log( 'refUserInfo', refUserInfo[ReactiveFlags.IS_REACTIVE] ); // true
 
-            //  实现 effect 
-            let zjeffect = ()=>{
+            
+            watchEffect(async onInvalidate=>{
+                
+                let id = refUserInfo.id;
+                console.log( 'watchEffect id ****', id );
+                let isAdd = true;
+                onInvalidate(() => {isAdd = false});
 
-            }
+                const data = await new Promise(res=> setTimeout(()=>res('data'), 5000));
+               
+                if (isAdd){
+                   
+                    console.log( 'true ****', refUserInfo.id );
+                } else {
+                 
+                    console.log( 'false *****', refUserInfo.id );
+                }
+            });
 
-            //  track
-            // let 
-
+            // setTimeout(()=>{
+            //     refUserInfo.id++;
+            // }, 1000);
+            // refUserInfo.id++;
+            // refUserInfo.id++;
         }
     });
 </script>

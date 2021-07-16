@@ -2,7 +2,7 @@
  * @Author: monai
  * @Date: 2021-07-13 13:58:35
  * @LastEditors: monai
- * @LastEditTime: 2021-07-14 18:49:13
+ * @LastEditTime: 2021-07-15 17:25:40
  */
 
 
@@ -111,11 +111,50 @@ const createEffect = (fn, options)=>{
 
 
 //  watchEffect
-const watchEffect = (fun: (onInvidata?: ()=>void)=>void)=>{
+const watchEffect = (fun: (onInvidata: (cleanFunc: ()=>void)=>void)=>void)=>{
     
+    let cleanup: Function;
+
+    const onInvidata = (cleanFunc: Function)=>{
+        cleanup = cleanFunc;
+    };
+
+    let getter = ()=>{
+        cleanup && cleanup();
+
+        fun(onInvidata);
+    }
+
+    effect(getter, {lazy: false});
 }
 
+let obj = reactive({id: 10});
 
+
+// onInvidata 副作用清楚
+// watchEffect(async onInvidata =>{
+
+//     let id = obj.id;
+//     let isFirst = true;
+//     console.log( 'watchEffect id ****', id );
+//     onInvidata(()=>isFirst = false);
+    
+//     await new Promise(res=> setTimeout(res, 1000));
+
+//     if(isFirst){
+//         console.log( '第一次执行：obj.id', id );
+//     }else{
+//         console.log( '后续执行：obj.id', id);
+//     }
+// });
+
+// obj.id++;
+// obj.id++;
+
+
+
+
+//  scheduler 调度器
 // let obj = reactive({id: 10});
 // let isRuning = false;
 // effect(()=>{
@@ -130,7 +169,6 @@ const watchEffect = (fun: (onInvidata?: ()=>void)=>void)=>{
 //         });
 //     }
 // })
-
 // obj.id ++;
 // obj.id ++;
 // obj.id ++;
